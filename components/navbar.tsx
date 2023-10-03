@@ -2,6 +2,7 @@ import React from "react";
 import "@/app/globals.css";
 import Image from "next/image";
 import NavBarItem from "./navbarItem";
+import Footer from "./footer";
 
 export default function Navbar() {
   return (

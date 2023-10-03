@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 .bg-primary-color{
   background-color: #176B87;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
 }

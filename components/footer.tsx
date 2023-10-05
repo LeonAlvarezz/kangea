@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, List, ListItem, ListItemText, Typography, Box, Stack, useMediaQuery } from '@mui/material/';
+import { Typography, Box, Stack, useMediaQuery } from '@mui/material/';
 import Link from 'next/link'; // Import Link from react-router-dom
 import "@/app/globals.css";
 import AboutUs from '../pages/about';
@@ -18,13 +18,13 @@ interface FooterSection {
     text: string;
     variant?: "body1" | "h5";
     fontWeight?: string;
-    url?: string; // Make 'url' property optional
+    url?: string; 
 }
 
 
 export default function Footer() {
     const listItemStyles = {
-        marginBottom: '16px', // Add margin to the bottom of each <li>
+        marginBottom: '16px', 
     };
 
     const footerStyle: React.CSSProperties = {
@@ -66,6 +66,7 @@ export default function Footer() {
                                         style={{
                                             fontFamily: 'Montserrat, sans-serif',
                                             fontWeight: item.fontWeight || 'normal',
+                                            marginBottom: '-5px'
                                         }}
                                     >
                                         {item.text}
@@ -109,6 +110,7 @@ export default function Footer() {
     const links: Link[] = [
         { text: 'Home Page', url: '/' }, // Replace with actual routes
         { text: 'About Us', url: '/about' },
+        { text: 'Contact Us', url: '/contact' },
         { text: 'Help', url: '/help' },
         { text: 'Term & Conditions', url: '/terms' },
         { text: 'FQA', url: '/faq' },
@@ -143,7 +145,7 @@ export default function Footer() {
                         ])}
                     </Stack>
 
-                    <Stack style={{ width: '500px' }}>
+                    <Stack style={{ width: 'auto' }}>
                         {generateListItems([
                             {
                                 text: 'Useful Links',

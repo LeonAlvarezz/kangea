@@ -7,14 +7,13 @@ import { useTheme } from '@mui/material/styles';
 import { Image } from 'react-bootstrap';
 
 export default function AboutUs() {
-    const theme = useTheme();
     const matches = useMediaQuery('(min-width:800px)');
 
     const containerStyle = {
         display: 'flex',
         flexDirection: matches ? 'column' : 'row',
         alignItems: 'center',
-        margin: '0 auto', // Center the content horizontally
+        margin: '0 auto',
         width: '80%',
     };
 

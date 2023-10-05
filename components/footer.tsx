@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, List, ListItem, ListItemText, Typography, Box } from '@mui/material/';
+import { Grid, List, ListItem, ListItemText, Typography, Box, Stack, useMediaQuery } from '@mui/material/';
 import Link from 'next/link'; // Import Link from react-router-dom
 import "@/app/globals.css";
 import AboutUs from '../pages/about';
@@ -7,6 +7,7 @@ import facebookImage from '@/public/img/facebook.png';
 import telegramImage from '@/public/img/telegram.png';
 import linkedinImage from '@/public/img/linkin.png';
 import twitterImage from '@/public/img/twitter.png';
+import { useTheme } from '@mui/material/styles';
 
 interface Link {
     text: string;
@@ -20,10 +21,20 @@ interface FooterSection {
     url?: string; // Make 'url' property optional
 }
 
+
 export default function Footer() {
     const listItemStyles = {
-        marginBottom: '-16px', // Add margin to the bottom of each <li>
+        marginBottom: '16px', // Add margin to the bottom of each <li>
     };
+
+    const footerStyle: React.CSSProperties = {
+        paddingTop: '30px',
+        paddingBottom: '70px',
+        paddingLeft: '15%',
+        paddingRight: '15%',
+    }
+
+    const matches = useMediaQuery('(min-width:800px)');
 
     const generateListItems = (items: FooterSection[]) => {
         const commonTypographyStyles = {
@@ -32,39 +43,11 @@ export default function Footer() {
             color: 'white',
         };
         return (
-            <List>
+            <Stack >
                 {items.map((item, index) => (
-                    <ListItem key={index} style={listItemStyles}>
+                    <div key={index} style={listItemStyles}>
                         {item.url ? (
                             <Link href={item.url} passHref>
-                                <ListItemText>
-                                    {item.variant === 'h5' ? (
-                                        <Typography
-                                            variant={item.variant}
-                                            color="white"
-                                            style={{
-                                                ...commonTypographyStyles,
-                                                fontWeight: item.fontWeight || 'normal',
-                                            }}
-                                        >
-                                            {item.text}
-                                        </Typography>
-                                    ) : (
-                                        <Typography
-                                            variant="body1"
-                                            color="white"
-                                            style={{
-                                                fontFamily: 'Montserrat, sans-serif',
-                                                fontWeight: item.fontWeight || 'normal',
-                                            }}
-                                        >
-                                            {item.text}
-                                        </Typography>
-                                    )}
-                                </ListItemText>
-                            </Link>
-                        ) : (
-                            <ListItemText>
                                 {item.variant === 'h5' ? (
                                     <Typography
                                         variant={item.variant}
@@ -88,11 +71,38 @@ export default function Footer() {
                                         {item.text}
                                     </Typography>
                                 )}
-                            </ListItemText>
+                            </Link>
+                        ) : (
+                            <>
+                                {item.variant === 'h5' ? (
+                                    <Typography
+                                        variant={item.variant}
+                                        color="white"
+                                        style={{
+                                            ...commonTypographyStyles,
+                                            fontWeight: item.fontWeight || 'normal',
+                                        }}
+                                    >
+                                        {item.text}
+                                    </Typography>
+                                ) : (
+                                    <Typography
+                                        variant="body1"
+                                        color="white"
+                                        style={{
+                                            fontFamily: 'Montserrat, sans-serif',
+                                            fontWeight: item.fontWeight || 'normal',
+                                        }}
+                                    >
+                                        {item.text}
+                                    </Typography>
+                                )}
+                            </>
                         )}
-                    </ListItem>
+                    </div>
                 ))}
-            </List>
+            </Stack>
+
         );
     };
 
@@ -109,81 +119,70 @@ export default function Footer() {
         { text: 'Find Us in Social media:', fontWeight: 'bold' },
     ];
 
+    const socialMediaImages = [
+        { alt: 'Facebook', src: facebookImage.src, width: '40px', height: undefined },
+        { alt: 'Telegram', src: telegramImage.src, width: '40px', height: '40px' },
+        { alt: 'LinkedIn', src: linkedinImage.src, width: '40px', height: '40px' },
+        { alt: 'Twitter', src: twitterImage.src, width: '40px', height: '40px' },
+    ];
+
     return (
         <div className='bg-primary-color'>
-            <div style={{ paddingTop: '10px', paddingBottom: '70px', paddingLeft: '15%', paddingRight: '15%' }}>
-                <Grid container spacing={4} justifyContent='center' alignItems='flex-start'>
-                    <Grid item xs={4}>
+            <div style={footerStyle}>
+                <Stack
+                    direction={matches ? 'row' : 'column'}
+                    spacing={4}
+                    justifyContent="center"
+                    alignItems="flex-start"
+                >
+                    <Stack spacing={2}>
                         {generateListItems([
                             { text: 'Cambodia Job', variant: 'h5', fontWeight: 'bold', url: '/home' }, // Replace '#' with the route
                             { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue auctor diam id egestas. Duis at ligula eu arcu elementum pellentesque.' },
                             { text: '2023 Company Name Pte Ltd. All Rights Reserved.' },
                         ])}
-                    </Grid>
-                    <Grid item xs={4}>
+                    </Stack>
+
+                    <Stack style={{ width: '500px' }}>
                         {generateListItems([
-                            { text: 'Useful Links', variant: 'h5', fontWeight: 'bold' },
+                            {
+                                text: 'Useful Links',
+                                variant: 'h5',
+                                fontWeight: 'bold'
+                            },
                             ...links,
                         ])}
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Grid container spacing={2} alignItems="center">
-                            <Grid item xs={12}>
-                                {generateListItems([
-                                    { text: 'Contact Us', variant: 'h5', fontWeight: 'bold' },
-                                    ...contactInfo,
-                                ])}
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Grid container spacing={2} alignItems="center">
-                                    <Grid item marginLeft={2}>
-                                        <Box
-                                            component="img"
-                                            sx={{
-                                                width: '40px',
-                                            }}
-                                            alt="Facebook"
-                                            src={facebookImage.src}
-                                        />
-                                    </Grid>
-                                    <Grid item>
-                                        <Box
-                                            component="img"
-                                            sx={{
-                                                width: '40px',
-                                                height: '40px',
-                                            }}
-                                            alt="Telegram"
-                                            src={telegramImage.src}
-                                        />
-                                    </Grid>
-                                    <Grid item>
-                                        <Box
-                                            component="img"
-                                            sx={{
-                                                width: '40px',
-                                                height: '40px',
-                                            }}
-                                            alt="LinkedIn"
-                                            src={linkedinImage.src}
-                                        />
-                                    </Grid>
-                                    <Grid item>
-                                        <Box
-                                            component="img"
-                                            sx={{
-                                                width: '40px',
-                                                height: '40px',
-                                            }}
-                                            alt="Twitter"
-                                            src={twitterImage.src}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
+                    </Stack>
+
+                    <Stack spacing={2}>
+                        <Stack spacing={2}>
+                            {generateListItems([
+                                {
+                                    text: 'Contact Us',
+                                    variant: 'h5',
+                                    fontWeight: 'bold'
+                                },
+                                ...contactInfo,
+                            ])}
+                        </Stack>
+
+                        <Stack spacing={2} direction="row">
+                            {socialMediaImages.map((image, index) => (
+                                <Box
+                                    key={index}
+                                    component="img"
+                                    sx={{
+                                        width: image.width,
+                                        height: image.height,
+                                    }}
+                                    alt={image.alt}
+                                    src={image.src}
+                                />
+                            ))}
+                        </Stack>
+                    </Stack>
+                </Stack>
+
             </div>
         </div>
     );

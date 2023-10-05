@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-primary-color {
+  background-color: #176b87;
+}
+
+.bg-button {
+  background-color: #104f64;
+}
+
+.bg-button:hover {
+  background-color: #023444;
+}
+
+.bg-middle-bar {
+  background: url('/img/middle-bar.png') no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-middle-bar-mobile {
+  background: url('/img/middle-bar-mobile.png') no-repeat;
+  background-size: cover;
+}
+.bg-card {
+  background-color: #fbfcfc;
+}

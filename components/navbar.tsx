@@ -1,5 +1,4 @@
 import React from 'react';
-import '@/app/globals.css';
 import Image from 'next/image';
 import NavBarItem from './navbarItem';
 import Link from 'next/link';
@@ -19,16 +18,6 @@ export default function Navbar() {
           </div>
           <div className='flex items-center justify-center gap-16'>
             <NavBarItem></NavBarItem>
-            <ul>
-              <li className='grid place-items-center'>
-                <button
-                  type='button'
-                  className='bg-button rounded-md px-6 py-3 text-xl font-bold shadow-sm'
-                >
-                  <Link href='/post-jobs'>Post Job</Link>
-                </button>
-              </li>
-            </ul>
           </div>
         </div>
       </div>

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  .text-h1 {
+    @apply text-[32px] sm:text-[40px] md:text-[45px] lg:text-[60px];
+    /*if the screen exceed md the font will be 50px, if it below md and in the range of sm it will go to 36px, if nothing is met then it will fall to 24px*/
+  }
+
+  .text-h2 {
+    @apply text-[24px] sm:text-[30px] md:text-[36px] lg:text-[40px];
+    /*if the screen exceed md the font will be 50px, if it below md and in the range of sm it will go to 36px, if nothing is met then it will fall to 24px*/
+  }
+
+  .text-p {
+    @apply text-[14px] sm:text-[16px] md:text-[18px] lg:text-[28px];
+  }
+
+  .text-primary {
+    @apply text-[#176B87];
+  }
+}

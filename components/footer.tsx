@@ -1,13 +1,17 @@
 import React from 'react';
 import { Typography, Box, Stack, useMediaQuery } from '@mui/material/';
 import Link from 'next/link'; // Import Link from react-router-dom
-import "@/app/globals.css";
+import "../public/css/globals.css";
 import AboutUs from '../pages/about';
 import facebookImage from '@/public/img/facebook.png';
 import telegramImage from '@/public/img/telegram.png';
 import linkedinImage from '@/public/img/linkin.png';
 import twitterImage from '@/public/img/twitter.png';
-import { useTheme } from '@mui/material/styles';
+import {
+    ThemeProvider,
+    createTheme,
+    useTheme
+} from '@mui/material/styles';
 
 interface Link {
     text: string;
@@ -18,13 +22,13 @@ interface FooterSection {
     text: string;
     variant?: "body1" | "h5";
     fontWeight?: string;
-    url?: string; 
+    url?: string;
 }
 
 
 export default function Footer() {
     const listItemStyles = {
-        marginBottom: '16px', 
+        marginBottom: '16px',
     };
 
     const footerStyle: React.CSSProperties = {
@@ -37,6 +41,7 @@ export default function Footer() {
     const matches = useMediaQuery('(min-width:800px)');
 
     const generateListItems = (items: FooterSection[]) => {
+
         const commonTypographyStyles = {
             fontFamily: 'Montserrat, sans-serif',
             variant: 'body1',
@@ -139,13 +144,16 @@ export default function Footer() {
                 >
                     <Stack spacing={2}>
                         {generateListItems([
-                            { text: 'Cambodia Job', variant: 'h5', fontWeight: 'bold', url: '/home' }, // Replace '#' with the route
+                            { text: 'Cambodia Job', variant: 'h5', fontWeight: 'bold', url: '/home' },
                             { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue auctor diam id egestas. Duis at ligula eu arcu elementum pellentesque.' },
                             { text: '2023 Company Name Pte Ltd. All Rights Reserved.' },
                         ])}
                     </Stack>
 
-                    <Stack style={{ width: 'auto' }}>
+                    <Stack
+                        style={{
+                            width: matches ? '500px' : 'auto'
+                        }}>
                         {generateListItems([
                             {
                                 text: 'Useful Links',

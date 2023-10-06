@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import LimkokwingImage from '@/public/img/Limkokwing.png';
-import "@/app/globals.css";
+import "../public/css/globals.css";
 
 import {
     Typography,
@@ -14,7 +14,11 @@ import {
     useMediaQuery,
 } from '@mui/material';
 
-import { useTheme } from '@mui/material/styles';
+import {
+    ThemeProvider,
+    createTheme,
+    useTheme
+} from '@mui/material/styles';
 
 import {
     LocalPhoneRounded as LocalPhoneRoundedIcon,
@@ -245,7 +249,7 @@ export default function ContactUs() {
                                     variant={matches ? 'standard' : 'outlined'}
                                     multiline
                                     fullWidth
-                                    maxRows={4}
+                                    maxRows={10}
                                     sx={{
                                         width: matches ? '100%' : '100%',
                                         [`& fieldset`]: {
@@ -306,6 +310,7 @@ export default function ContactUs() {
                                                     fontFamily:
                                                         'Montserrat, sans-serif',
                                                     fontWeight: 'normal',
+                                                    fontSize: '20px'
                                                 }}
                                                 className="mb-5"
                                             >

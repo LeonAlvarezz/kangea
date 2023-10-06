@@ -3,8 +3,13 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import LimkokwingImage from '@/public/img/Limkokwing.png';
 import { Typography, useMediaQuery, Stack } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
 import { Image } from 'react-bootstrap';
+import "../public/css/globals.css";
+import {
+    ThemeProvider,
+    createTheme,
+    useTheme
+} from '@mui/material/styles';
 
 export default function AboutUs() {
     const matches = useMediaQuery('(min-width:800px)');

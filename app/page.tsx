@@ -12,7 +12,7 @@ export default function Home() {
         <Hero></Hero>
       </div>
       <Available></Available>
-      <div className='m-auto w-[90%]'>
+      <div className='m-auto w-[70%]'>
         <LastestJob></LastestJob>
       </div>
     </>

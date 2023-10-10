@@ -1,6 +1,6 @@
 import React from 'react';
 import LastestJobItem from './lastestJobItem';
-
+import jobs from '@/mock-data/jobs';
 export default function LastestJob() {
   return (
     <div className='mt-10'>
@@ -8,9 +8,13 @@ export default function LastestJob() {
         Lastest Jobs
       </h1>
       <div className='flex justify-center'>
-        <p className='h-1 w-[10%] bg-teal-300'></p>
+        <p className='mb-10 h-1 w-[10%] bg-teal-300 '></p>
       </div>
-      <LastestJobItem></LastestJobItem>
+      <div className='grid grid-cols-3 place-items-center gap-4'>
+        {jobs.map((job) => (
+          <LastestJobItem key={job.id} job={job}></LastestJobItem>
+        ))}
+      </div>
     </div>
   );
 }

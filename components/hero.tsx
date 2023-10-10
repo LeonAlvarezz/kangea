@@ -11,8 +11,7 @@ export default function Hero() {
           <br />
           Your Gateway to Opportunities!
         </h1>
-
-        <div className='mt-12 flex flex-col items-center justify-between gap-10 md:flex-row md:gap-0'>
+        <div className='mt-4 flex flex-col items-center justify-between gap-10 md:flex-row md:gap-0 lg:mt-12'>
           <div className='basis-1/3 pr-0 md:basis-1/2 md:pr-20 lg:pr-40'>
             <p className='text-p  text-center md:text-left lg:text-left'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -20,8 +19,8 @@ export default function Hero() {
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi ut aliquip ex ea commodo consequat.
             </p>
-            <div className='flex justify-center md:justify-start lg:justify-start'>
-              <button className='bg-button mt-6 rounded-md px-6 py-3 text-xl font-bold text-white '>
+            <div className='mt-1 flex justify-center md:justify-start lg:justify-start'>
+              <button className='bg-button mt-4 rounded-md px-6 py-3 text-xl font-bold text-white transition-all '>
                 <Link href='/'>Find Job Now</Link>
               </button>
             </div>

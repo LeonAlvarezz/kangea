@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Job } from '@/type/job';
+import Link from 'next/link';
 type Props = {
   job: Job;
 };
@@ -41,11 +42,13 @@ export default function LastestJobItem({ job }: Props) {
           <div className='mt-4 px-6'>
             <p className='text-[16px]'>Location: {job.location}</p>
             <p className='text-[16px]'>Date Posted: {formattedDate}</p>
-            <p className='text-[16px]'>Salary: {job.salary}$</p>
+            <p className='mb-4 text-[16px]'>Salary: {job.salary}$</p>
             <div className='flex justify-center'>
-              <button className='mt-4 rounded-lg bg-orange-400 px-6 py-1 font-bold text-white transition-all hover:bg-orange-700'>
-                View
-              </button>
+              <Link href={`/${job.id}`}>
+                <button className='rounded-lg bg-orange-400 px-6 py-1 font-bold text-white transition-all hover:bg-orange-700'>
+                  View
+                </button>
+              </Link>
             </div>
           </div>
         </div>

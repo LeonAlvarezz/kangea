@@ -16,6 +16,9 @@ export default function NavBarItem() {
         <li className='grid place-items-center text-lg font-bold'>
           <Link href='/jobs'>Jobs</Link>
         </li>
+        <li className='grid place-items-center text-lg font-bold'>
+          <Link href='/add-job'>Add Job</Link>
+        </li>
       </ul>
     </div>
   );

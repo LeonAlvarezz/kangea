@@ -9,3 +9,5 @@ type Job = {
   image: string;
   imageAlt: string;
 };
+
+export type { Job };

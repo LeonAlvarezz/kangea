@@ -17,7 +17,11 @@ export default function NavBarItem() {
           <Link href='/jobs'>Jobs</Link>
         </li>
         <li className='grid place-items-center text-lg font-bold'>
-          <Link href='/add-job'>Add Job</Link>
+          <Link href='/add-job'>
+            <button className='rounded-lg bg-sky-600 px-6 py-3 transition-all hover:bg-sky-900'>
+              Add Job
+            </button>
+          </Link>
         </li>
       </ul>
     </div>

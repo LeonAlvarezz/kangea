@@ -3,8 +3,7 @@ import Navbar from '../components/navbar';
 import Hero from '../components/hero';
 import Available from '../components/available';
 import LastestJob from '../components/lastestJob';
-import "../public/css/globals.css";
-import Footer from '@/components/footer';
+import Footer from '../components/footer';
 
 export default function Home() {
   return (
@@ -14,7 +13,7 @@ export default function Home() {
         <Hero></Hero>
       </div>
       <Available></Available>
-      <div className='m-auto w-[90%]'>
+      <div className='m-auto lg:w-[80%] xl:w-[60%]'>
         <LastestJob></LastestJob>
       </div>
       <Footer></Footer>

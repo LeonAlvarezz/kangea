@@ -2,7 +2,7 @@ import React from 'react';
 export default function Available() {
   return (
     <div className='sm:bg-middle-bar bg-middle-bar-mobile flex h-[400px] w-full flex-col items-center gap-4 px-24 py-10 text-blue-900 sm:gap-10 md:flex-row lg:gap-14'>
-      <h1 className='text-h1 text-center font-semibold leading-10 lg:text-left'>
+      <h1 className='text-center text-[60px] font-semibold leading-10 lg:text-left'>
         Jobs
         <span className='block text-[24px] font-normal underline decoration-blue-900'>
           Available

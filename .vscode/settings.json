@@ -1,0 +1,9 @@
+{
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "typescript": "typescriptreact",
+    },
+    "javascript.format.enable": true,
+    "typescript.autoClosingTags": true,
+    "js/ts.implicitProjectConfig.strictNullChecks": false
+}

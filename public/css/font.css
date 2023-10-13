@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
   .text-h1 {
-    @apply text-[32px] sm:text-[40px] md:text-[45px] lg:text-[60px];
+    @apply text-[30px] sm:text-[35px] md:text-[40px] lg:text-[45px];
     /*if the screen exceed md the font will be 50px, if it below md and in the range of sm it will go to 36px, if nothing is met then it will fall to 24px*/
   }
 

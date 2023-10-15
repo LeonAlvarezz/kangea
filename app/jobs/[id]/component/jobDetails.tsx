@@ -1,6 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import { jobDescription, jobRequirement } from '@/mock-data/jobDescription';
+import {
+  jobDescription,
+  jobRequirement,
+} from '../../../../mock-data/jobDescription';
 export default function JobDetails() {
   return (
     <div className='h-full rounded-xl p-6 shadow-md shadow-gray-400'>

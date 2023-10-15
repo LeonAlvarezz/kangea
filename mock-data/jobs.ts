@@ -1,4 +1,4 @@
-import type { Job } from '@/type/job';
+import type { Job } from '@/type/type';
 const jobs: Job[] = [
   {
     id: 1,

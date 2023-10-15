@@ -4,10 +4,6 @@ import { Typography, Box, Stack, useMediaQuery } from '@mui/material/';
 import Link from 'next/link'; // Import Link from react-router-dom
 import '../public/css/globals.css';
 import AboutUs from '../pages/about';
-import facebookImage from '@/public/img/facebook.png';
-import telegramImage from '@/public/img/telegram.png';
-import linkedinImage from '@/public/img/linkin.png';
-import twitterImage from '@/public/img/twitter.png';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 
 interface Link {
@@ -27,12 +23,12 @@ export default function Footer() {
     marginBottom: '16px',
   };
 
-  const footerStyle: React.CSSProperties = {
-    paddingTop: '30px',
-    paddingBottom: '70px',
-    paddingLeft: '15%',
-    paddingRight: '15%',
-  };
+  // const footerStyle: React.CSSProperties = {
+  //   paddingTop: '30px',
+  //   paddingBottom: '70px',
+  //   paddingLeft: '15%',
+  //   paddingRight: '15%',
+  // };
 
   const matches = useMediaQuery('(min-width:800px)');
 
@@ -125,18 +121,23 @@ export default function Footer() {
   const socialMediaImages = [
     {
       alt: 'Facebook',
-      src: facebookImage.src,
+      src: '/img/facebook.png',
       width: '40px',
       height: undefined,
     },
-    { alt: 'Telegram', src: telegramImage.src, width: '40px', height: '40px' },
-    { alt: 'LinkedIn', src: linkedinImage.src, width: '40px', height: '40px' },
-    { alt: 'Twitter', src: twitterImage.src, width: '40px', height: '40px' },
+    {
+      alt: 'Telegram',
+      src: '/img/telegram.png',
+      width: '40px',
+      height: '40px',
+    },
+    { alt: 'LinkedIn', src: '/img/linkin.png', width: '40px', height: '40px' },
+    { alt: 'Twitter', src: '/img/twitter.png', width: '40px', height: '40px' },
   ];
 
   return (
     <div className='bg-primary-color'>
-      <div style={footerStyle}>
+      <div className='m-auto w-[90%] py-16'>
         <Stack
           direction={matches ? 'row' : 'column'}
           spacing={4}

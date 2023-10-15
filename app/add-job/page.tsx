@@ -1,152 +1,207 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Navbar from "@/components/navbar";
-
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Navbar from '../../components/navbar';
 
 export default function AddJob() {
-    return (
-        <>
-            <Navbar></Navbar>
-            <form className="
+  return (
+    <>
+      <Navbar></Navbar>
+      <form
+        className='
+            mt-10 
             flex 
             flex-col 
-            gap-3 
             items-center 
-            mt-10">
-            <div className="flex items-center text-3xl font-bold text-[#176B87]">Describe Your Company</div>
-            <div className="flex justify-end flex-col sm:flex-col md:flex-row items-center text-xl mt-5">
-                <label className="md:mr-20 md:w-32 text-right items-center mb-3 text-lg">Job Title</label>
-                <input className="
-                    border
-                    md:w-[700px]
-                    border-gray-500
-                    rounded-[15px]
+            gap-3'
+      >
+        <div className='flex items-center text-3xl font-bold text-[#176B87]'>
+          Describe Your Company
+        </div>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:flex-row'>
+          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
+            Job Title
+          </label>
+          <input
+            className='
                     w-[300px]
-                    py-2
-                    px-4
-                " type="text" placeholder="Enter your job title"/>
-            </div>
-            <div className="flex justify-end flex-col sm:flex-col md:flex-row items-center text-xl mt-5">
-                <label className="md:mr-20 md:w-32 text-right items-center mb-3 text-lg">Company</label>
-                <input className="
+                    rounded-[15px]
                     border
+                    border-gray-500
+                    px-4
+                    py-2
                     md:w-[700px]
-                    border-gray-500
-                    rounded-[15px]
+                '
+            type='text'
+            placeholder='Enter your job title'
+          />
+        </div>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:flex-row'>
+          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
+            Company
+          </label>
+          <input
+            className='
                     w-[300px]
-                    py-2
-                    px-4
-                " type="text" placeholder="Enter the name of your company"/>
-            </div>
-            <div className="flex justify-end flex-col sm:flex-col md:flex-row items-center text-xl mt-5">
-                <label className="md:mr-20 md:w-32 text-right items-center mb-3 text-lg">Job Location</label>
-                <input className="
+                    rounded-[15px]
                     border
+                    border-gray-500
+                    px-4
+                    py-2
                     md:w-[700px]
-                    border-gray-500
-                    rounded-[15px]
+                '
+            type='text'
+            placeholder='Enter the name of your company'
+          />
+        </div>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:flex-row'>
+          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
+            Job Location
+          </label>
+          <input
+            className='
                     w-[300px]
-                    py-2
-                    px-4
-                " type="text" placeholder="Enter where your job located"/>
-            </div>
-            <div className="flex justify-end flex-col sm:flex-col md:flex-row items-center text-xl mt-5">
-                <label className="md:mr-20 md:w-32 text-right items-center mb-3 text-lg">Job Description</label>
-                <input className="
+                    rounded-[15px]
                     border
+                    border-gray-500
+                    px-4
+                    py-2
                     md:w-[700px]
-                    border-gray-500
-                    rounded-[15px]
+                '
+            type='text'
+            placeholder='Enter where your job located'
+          />
+        </div>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:flex-row'>
+          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
+            Job Description
+          </label>
+          <input
+            className='
                     w-[300px]
-                    py-2
-                    px-4
-                " type="text" placeholder="Enter your job description"/>
-            </div>
-            <div className="flex justify-end flex-col sm:flex-col md:flex-row items-center text-xl mt-5">
-                <label className="md:mr-20 md:w-32 text-right items-center mb-3 text-lg">Job Requirement</label>
-                <input className="
+                    rounded-[15px]
                     border
+                    border-gray-500
+                    px-4
+                    py-2
                     md:w-[700px]
-                    border-gray-500
-                    rounded-[15px]
+                '
+            type='text'
+            placeholder='Enter your job description'
+          />
+        </div>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:flex-row'>
+          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
+            Job Requirement
+          </label>
+          <input
+            className='
                     w-[300px]
-                    py-2
-                    px-4
-                " type="text" placeholder="Enter job requirement"/>
-            </div>
-            <div className="flex justify-end flex-col sm:flex-col md:flex-row items-center text-xl mt-5 md:mr-[400px]">
-                <label className="md:mr-20 md:w-32 text-right items-center mb-3 text-lg">Salary</label>
-                <input className="
-                    border
-                    md:w-[300px]
-                    border-gray-500
                     rounded-[15px]
+                    border
+                    border-gray-500
+                    px-4
+                    py-2
+                    md:w-[700px]
+                '
+            type='text'
+            placeholder='Enter job requirement'
+          />
+        </div>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:mr-[400px] md:flex-row'>
+          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
+            Salary
+          </label>
+          <input
+            className='
                     w-[175px]
-                    py-2
+                    rounded-[15px]
+                    border
+                    border-gray-500
                     px-4
-                " type="text" placeholder="Salary Range"/>
-            </div>
-            <div className="flex justify-end flex-col sm:flex-col md:flex-row items-center text-xl mt-5 md:mr-[400px]">
-                <label className="md:mr-20 md:w-32 text-right items-center mb-3 text-lg">Company Logo</label>
-                <div className="
+                    py-2
+                    md:w-[300px]
+                '
+            type='text'
+            placeholder='Salary Range'
+          />
+        </div>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:mr-[400px] md:flex-row'>
+          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
+            Company Logo
+          </label>
+          <div
+            className='
+                    w-[300px]
                     flex-row
+                    rounded-[15px]
+                    px-4
+                    py-2
+                    md:w-[300px]
                     md:border
                     md:border-gray-500
-                    rounded-[15px]
-                    md:w-[300px]
-                    w-[300px]
-                    py-2
-                    px-4
-                ">
-                <input type="file" className="
+                '
+          >
+            <input
+              type='file'
+              className='
                     block 
                     w-full 
                     text-sm 
                     text-slate-800
                     file:mr-4 
-                    file:py-2 
-                    file:px-4
                     file:rounded-full 
                     file:border-0
-                    file:text-sm 
-                    file:font-semibold
                     file:bg-[#176B87] 
+                    file:px-4
+                    file:py-2 
+                    file:text-sm
+                    file:font-semibold 
                     file:text-white
                     hover:file:bg-[#023444]
-                     "/>
-                </div>
-            </div>
-            <div className="flex justify-end flex-col sm:flex-col md:flex-row items-center text-xl mt-5 md:mr-[400px]">
-                <label className="md:mr-20 md:w-32 text-right items-center mb-3 text-lg">Contact Detail</label>
-                <input className="
-                    border
-                    md:w-[300px]
-                    border-gray-500
-                    rounded-[15px]
+                     '
+            />
+          </div>
+        </div>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:mr-[400px] md:flex-row'>
+          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
+            Contact Detail
+          </label>
+          <input
+            className='
                     w-[175px]
-                    py-2
+                    rounded-[15px]
+                    border
+                    border-gray-500
                     px-4
-                " type="text" placeholder="Enter your contact detail"/>
-            </div>
-            <button className="
-                text-white
-                font-bold
-                text-[20px]
+                    py-2
+                    md:w-[300px]
+                '
+            type='text'
+            placeholder='Enter your contact detail'
+          />
+        </div>
+        <button
+          className='
+                mb-[50px]
                 mt-5
-                bg-[#104f64]
+                rounded-[15px]
                 border
                 border-gray-500
-                rounded-[15px]
-                py-2
+                bg-[#104f64]
                 px-[50px]
-                mb-[50px]
-                hover:bg-[#023444]
+                py-2
+                text-[20px]
+                font-bold
+                text-white
                 hover:border-none
-            ">Upload</button>
-        </form>
-        </>
-        
-    );
+                hover:bg-[#023444]
+            '
+        >
+          Upload
+        </button>
+      </form>
+    </>
+  );
 }

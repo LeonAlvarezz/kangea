@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import Navbar from '@/components/navbar';
-import Footer from '@/components/footer';
-import LimkokwingImage from '@/public/img/Limkokwing.png';
+import Navbar from '../../components/navbar';
+import Footer from '../../components/footer';
+import LimkokwingImage from '../..//public/img/Limkokwing.png';
 import { Typography, useMediaQuery, Stack } from '@mui/material';
 import { Image } from 'react-bootstrap';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
@@ -43,9 +43,10 @@ export default function AboutUs() {
           direction={matches ? 'row' : 'column'}
           spacing={2}
           style={{
-            width: '70%',
+            width: '90%',
             alignItems: 'center',
-            margin: '0 auto',
+            margin: 'auto',
+            minHeight: 'calc(100vh - 100px)',
           }}
         >
           <div style={gridItemStyle}>

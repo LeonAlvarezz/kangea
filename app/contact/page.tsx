@@ -1,9 +1,8 @@
 'use client';
 import React from 'react';
-import Navbar from '@/components/navbar';
-import Footer from '@/components/footer';
+import Navbar from '../../components/navbar';
+import Footer from '../../components/footer';
 import LimkokwingImage from '@/public/img/Limkokwing.png';
-import '@/public/css/globals.css';
 
 import {
   Typography,

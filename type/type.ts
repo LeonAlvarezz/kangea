@@ -10,4 +10,8 @@ type Job = {
   imageAlt: string;
 };
 
+type Category = {
+  id: number;
+  name: string;
+};
 export type { Job };

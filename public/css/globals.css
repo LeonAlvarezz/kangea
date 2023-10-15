@@ -6,8 +6,12 @@
   background-color: #176b87;
 }
 
+.border-primary {
+  border-color: #176b87;
+}
+
 .bg-button {
-  background-color: #104f64;
+  background-color: #176b87;
 }
 
 .bg-button:hover {

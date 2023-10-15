@@ -6,15 +6,16 @@ export default function NavBarItem() {
     <div>
       <ul className='flex gap-12'>
         <li className='grid place-items-center text-lg font-bold'>
-          <Link href='/about'>About Us</Link>
+          <Link href='/jobs'>Jobs</Link>
+        </li>
+        <li className='h-[80px] w-[1px] bg-gray-400'></li>
+
+        <li className='grid place-items-center text-lg font-bold'>
+          <Link href='/about'>About</Link>
         </li>
 
         <li className='grid place-items-center text-lg font-bold'>
-          <Link href='/contact'>Contact Us</Link>
-        </li>
-        <li className='h-[80px] w-[1px] bg-gray-400'></li>
-        <li className='grid place-items-center text-lg font-bold'>
-          <Link href='/jobs'>Jobs</Link>
+          <Link href='/contact'>Contact</Link>
         </li>
         <li className='grid place-items-center text-lg font-bold'>
           <Link href='/add-job'>

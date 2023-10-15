@@ -9,7 +9,7 @@ export default function Navbar() {
       <div className='bg-primary-color w-full'>
         <div className='m-auto flex h-[100px] w-[90%] items-center justify-between text-white'>
           <div className='w-[141px]'>
-            <a href="/">
+            <a href='/'>
               <Image
                 src='/img/kanhea-logo.png'
                 width={141}
@@ -18,7 +18,7 @@ export default function Navbar() {
               />
             </a>
           </div>
-          <div className='flex items-center justify-center gap-16'>
+          <div className='hidden items-center justify-center gap-16 md:flex'>
             <NavBarItem></NavBarItem>
           </div>
         </div>

@@ -1,6 +1,6 @@
 'use client';
 import LastestJobItem from './lastestJobItem';
-import jobs from '@/mock-data/jobs';
+import jobs from '../mock-data/jobs';
 import React, { useState } from 'react';
 import { Job } from '@/type/job';
 

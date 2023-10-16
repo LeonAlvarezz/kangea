@@ -8,11 +8,10 @@ export default function SimilarJob() {
       </h2>
       <div
         style={{ height: 'calc(100% - 36px)' }}
-        className='w-full rounded-xl p-4 shadow-md shadow-gray-400'
+        className='w-full rounded-xl p-4 shadow-sm shadow-gray-400'
       >
-        <h1 className='text-lg font-medium'>Cost Assistant</h1>
-        <br />
-        <p className='text-description mb-2'>
+        <h1 className='mb-2 text-lg font-medium'>Cost Assistant</h1>
+        <p className='text-description mb-3'>
           Dear All Connector,Wong & Meas Restaurant Co., Ltd is looking for a
           potential candidate to fulfill the position.
         </p>

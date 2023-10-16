@@ -5,10 +5,12 @@ import categories from '../../../mock-data/jobCategory';
 export default function JobCategory() {
   return (
     <div className='w-full'>
-      <div className='border-primary mb-6 h-12 rounded-xl border-[1px]'>
-        <div className='text-primary flex h-full items-center justify-center gap-4'>
-          <BsFillClipboardFill size={25} />
-          <h2 className='text-xl font-semibold'>Job Category</h2>
+      <div className='border-primary mb-6 rounded-xl border-[1px] p-2'>
+        <div className='text-primary flex items-center justify-center gap-4'>
+          <div className='hidden md:block'>
+            <BsFillClipboardFill size={25} />
+          </div>
+          <h2 className='text-p text-center font-semibold'>Job Category</h2>
         </div>
       </div>
       <ul>

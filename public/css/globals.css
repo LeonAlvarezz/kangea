@@ -2,16 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #176b87;
+}
+
 .bg-primary-color {
-  background-color: #176b87;
+  background-color: var(--primary);
 }
 
 .border-primary {
-  border-color: #176b87;
+  border-color: var(--primary);
 }
 
 .bg-button {
-  background-color: #176b87;
+  background-color: var(--primary);
 }
 
 .bg-button:hover {

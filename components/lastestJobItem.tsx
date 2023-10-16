@@ -19,7 +19,7 @@ export default function LastestJobItem({ job }: Props) {
   // Render the formatted date
   return (
     <div className='flex flex-col items-center justify-center p-10'>
-      <div className='bg-card relative h-[350px] w-[300px] rounded-2xl shadow-2xl'>
+      <div className='bg-card relative h-[350px] w-[300px] rounded-2xl shadow-lg shadow-gray-300'>
         <div className='absolute -top-10 left-0 right-0 m-auto max-h-[140px] max-w-[140px] overflow-hidden rounded-2xl shadow-lg'>
           <Image
             src={job.image}

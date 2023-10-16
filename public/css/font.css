@@ -12,8 +12,21 @@
     /*if the screen exceed md the font will be 50px, if it below md and in the range of sm it will go to 36px, if nothing is met then it will fall to 24px*/
   }
 
+  .text-h3 {
+    @apply text-[16px] sm:text-[20px] md:text-[25px] lg:text-[30px];
+    /*if the screen exceed md the font will be 50px, if it below md and in the range of sm it will go to 36px, if nothing is met then it will fall to 24px*/
+  }
+
+  .text-h4 {
+    @apply text-[16px] sm:text-[18px] md:text-[20px] lg:text-[25px];
+  }
+
+  .text-h4 {
+    @apply text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px];
+  }
+
   .text-p {
-    @apply text-[14px] sm:text-[16px] md:text-[18px] lg:text-[28px];
+    @apply text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px];
   }
 
   .text-primary {

@@ -6,9 +6,9 @@ type Props = {
 
 export default function JobCategoryItem({ category }: Props) {
   return (
-    <div className='border-primary h-12 rounded-xl border-[1px]'>
-      <div className='flex h-full items-center justify-center'>
-        <h2 className='text-xl'>{category.name}</h2>
+    <div className='border-primary rounded-xl border-[1px] p-2 hover:cursor-pointer hover:bg-[--primary] hover:text-white'>
+      <div className='h-full'>
+        <h2 className='text-p text-center'>{category.name}</h2>
       </div>
     </div>
   );

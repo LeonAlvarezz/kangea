@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import LastestJobItem from './lastestJobItem';
@@ -39,7 +39,9 @@ export default function LatestJob() {
 
   return (
     <div className='my-10'>
-      <h1 className='text-h2 text-primary text-center font-bold'>Latest Jobs</h1>
+      <h1 className='text-h2 text-primary text-center font-bold'>
+        Latest Jobs
+      </h1>
       <div className='flex justify-center'>
         <p className='mb-10 h-1 w-[10%] bg-teal-300'></p>
       </div>

@@ -29,16 +29,27 @@ export default function LastestJobItem({ job }: Props) {
       <div className='bg-card relative h-[350px] w-[300px] rounded-2xl shadow-2xl'>
         <div className='absolute -top-10 left-0 right-0 m-auto max-h-[140px] max-w-[140px] overflow-hidden rounded-2xl shadow-lg'>
           {job.ImageLink ? (
-            <Image
-              src={job.ImageLink}
-              alt={altText}
-              width={0}
-              height={0}
-              layout='responsive'
-            />
+            <div className='w-[300px]'>
+              <Image
+                src={job.ImageLink}
+                alt={altText}
+                width={0}
+                height={0}
+                layout='responsive'
+              />
+            </div>
           ) : (
-            <Image src='/path-to-default-image.png' alt={altText} />
-            // Replace "/path-to-default-image.png" with your default image source
+            <div className='w-[300px]'>
+              <Image
+                src='/img/khmer24.png'
+                width={0}
+                height={0}
+                layout='responsive'
+                alt={altText}
+              />
+              {/* Replace "/path-to-default-image.png" with your default image
+              source */}
+            </div>
           )}
         </div>
         <div className='absolute left-0 right-0 top-24 m-auto '>

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import LastestJobItem from './lastestJobItem';
+import { fetchAllJobs } from '../helper/helper';
 
 export default function LatestJob() {
   const initialJobsToShow = 3; // Initial number of jobs to show
@@ -16,21 +17,12 @@ export default function LatestJob() {
 
   useEffect(() => {
     // Define your secret here
-    const secret = 'qwerty12345';
-
-    // Create a custom Axios instance with the x-secret header
-    const api = axios.create({
-      headers: {
-        'X-Secret': secret,
-      },
-    });
 
     // Fetch data from the API when the component mounts
-    api
-      .get('http://localhost:3000/api/posts')
-      .then((response) => {
+    fetchAllJobs()
+      .then((data) => {
         // Set the fetched data in the state
-        setJobs(response.data);
+        setJobs(data);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);

@@ -27,29 +27,26 @@ export default function LastestJobItem({ job }: Props) {
   return (
     <div className='flex flex-col items-center justify-center p-10'>
       <div className='bg-card relative h-[350px] w-[300px] rounded-2xl shadow-2xl'>
-        <div className='absolute -top-10 left-0 right-0 m-auto max-h-[140px] max-w-[140px] overflow-hidden rounded-2xl shadow-lg'>
+        <div className='relative -top-10 left-0 right-0 m-auto h-[120px] w-[120px] overflow-hidden rounded-2xl shadow-lg'>
           {job.ImageLink ? (
-            <div className='w-[300px]'>
-              <Image
-                src={job.ImageLink}
-                alt={altText}
-                width={0}
-                height={0}
-                layout='responsive'
-              />
-            </div>
+            <Image
+              src={job.ImageLink}
+              alt={altText}
+              width={0}
+              height={0}
+              layout='fill'
+              objectFit='cover'
+            />
           ) : (
-            <div className='w-[300px]'>
-              <Image
-                src='/img/khmer24.png'
-                width={0}
-                height={0}
-                layout='responsive'
-                alt={altText}
-              />
-              {/* Replace "/path-to-default-image.png" with your default image
-              source */}
-            </div>
+            <Image
+              src='/img/placeholder.jpg'
+              width={0}
+              height={0}
+              layout='responsive'
+              alt={altText}
+            />
+            /* Replace "/path-to-default-image.png" with your default image
+              source */
           )}
         </div>
         <div className='absolute left-0 right-0 top-24 m-auto '>
@@ -67,7 +64,7 @@ export default function LastestJobItem({ job }: Props) {
           <div className='mt-4 px-6'>
             <p className='text-[16px]'>Location: {job.Location}</p>
             <p className='text-[16px]'>Date Posted: {formattedDate}</p>
-            <p className='mb-4 text-[16px]'>Salary: {job.Salary}$</p>
+            <p className='mb-4 text-[16px]'>Salary: {job.Salary}</p>
             <div className='flex justify-center'>
               <Link href={`/jobs/${job.PostingID}`}>
                 <button className='rounded-lg bg-orange-400 px-6 py-1 font-bold text-white transition-all hover:bg-orange-700'>

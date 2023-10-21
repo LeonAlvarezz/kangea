@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {};
 
 module.exports = {
-    images: {
-      domains: ['images.khmer24.co'],
-    },
-  };
-  
+  images: {
+    domains: ['images.khmer24.co', 'st2.depositphotos.com'],
+  },
+};

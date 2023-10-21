@@ -21,7 +21,7 @@
     @apply text-[16px] sm:text-[18px] md:text-[20px] lg:text-[25px];
   }
 
-  .text-h4 {
+  .text-h5 {
     @apply text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px];
   }
 
@@ -29,6 +29,9 @@
     @apply text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px];
   }
 
+  .text-description {
+    @apply text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px];
+  }
   .text-primary {
     @apply text-[#176B87];
   }

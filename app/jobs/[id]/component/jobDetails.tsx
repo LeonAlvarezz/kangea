@@ -32,6 +32,9 @@ export default function JobDetails({ job }: params) {
           <p className='text-primary text-p text-center md:text-left'>
             {job.CompanyName}
           </p>
+          <div className='my-2 flex h-8 w-48 justify-center rounded-full bg-orange-500 p-1 text-white'>
+            <p>{job.ResourceType}</p>
+          </div>
           <p className='text-center md:text-left'>{job.WorkingSchedule}</p>
           <p className='text-center md:text-left'>Salary: {job.Salary}</p>
           <p className='text-center md:text-left'>

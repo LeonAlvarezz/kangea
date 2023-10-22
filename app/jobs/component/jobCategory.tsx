@@ -2,7 +2,22 @@ import React from 'react';
 import { BsFillClipboardFill } from 'react-icons/bs';
 import JobCategoryItem from './jobCategoryItem';
 import categories from '../../../mock-data/jobCategory';
-export default function JobCategory() {
+import type { Job } from '../../../type/type';
+type Props = {
+  jobs: Job[];
+};
+export default function JobCategory({ jobs }: Props) {
+  const uniqueJobTypes = new Set();
+
+  // Filter jobs and add unique job types to the Set
+  const uniqueJobs: Job[] = jobs.filter((job) => {
+    if (!uniqueJobTypes.has(job.Type)) {
+      uniqueJobTypes.add(job.Type);
+      return true;
+    }
+    return false;
+  });
+
   return (
     <div className='w-full'>
       <div className='border-primary mb-6 rounded-xl border-[1px] p-2'>
@@ -14,9 +29,9 @@ export default function JobCategory() {
         </div>
       </div>
       <ul>
-        {categories.map((category) => (
-          <li key={category.id}>
-            <JobCategoryItem category={category}></JobCategoryItem>
+        {uniqueJobs.map((job, index) => (
+          <li key={index}>
+            <JobCategoryItem job={job}></JobCategoryItem>
           </li>
         ))}
       </ul>

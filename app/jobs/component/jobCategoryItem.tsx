@@ -1,14 +1,14 @@
 import React from 'react';
-import { Category } from '../../../type/type';
+import { Job } from '../../../type/type';
 type Props = {
-  category: Category;
+  job: Job;
 };
 
-export default function JobCategoryItem({ category }: Props) {
+export default function JobCategoryItem({ job }: Props) {
   return (
     <div className='border-primary rounded-xl border-[1px] p-2 hover:cursor-pointer hover:bg-[--primary] hover:text-white'>
       <div className='h-full'>
-        <h2 className='text-p text-center'>{category.name}</h2>
+        <h2 className='text-p text-center'>{job.Type}</h2>
       </div>
     </div>
   );

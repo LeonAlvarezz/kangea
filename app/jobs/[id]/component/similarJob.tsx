@@ -9,7 +9,7 @@ export default function SimilarJob({ nextJob }: params) {
     <div className=''>
       <h2 className='text-primary px-4 py-1 text-xl font-semibold'>Next Job</h2>
       <div className='rounded-xl p-4 shadow-md shadow-gray-400'>
-        <h1 className='text-h4 text-primary w-[80%] overflow-hidden text-ellipsis whitespace-nowrap font-medium'>
+        <h1 className='text-h4 text-primary w-[80%]  overflow-hidden text-ellipsis whitespace-nowrap font-medium'>
           {nextJob.Title}
         </h1>
         <p className='text-p text-ellipsis'>{nextJob.CompanyName}</p>

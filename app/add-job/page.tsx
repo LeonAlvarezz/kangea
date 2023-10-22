@@ -1,10 +1,100 @@
 'use client';
-
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '../../components/navbar';
+import type { Job } from '../../type/type';
+import { fetchAllJobs } from '../../helper/helper';
+import Image from 'next/image';
+import axios from 'axios';
+import uploadImageToImgBB from './utility';
 
 export default function AddJob() {
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [uploadJob, setUploadJob] = useState<Job>({});
+  const [photoPath, setPhotoPath] = useState('');
+  const [photoFile, setPhotoFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // const handleImageUpload = (e) => {
+  //   const file = e.target.files[0];
+  //   // const reader = new FileReader();
+  //   // reader.onloadend = () => {
+  //   //   const base64StringUS = reader.result
+  //   //     .replace('data:', '')
+  //   //     .replace(/^.+,/, '');
+  //   //   localStorage.setItem('wallpaperXXX', base64StringUS);
+  //   //   // const myImage = localStorage.getItem('wallpaperXXX');
+  //   //   // var bannerImg = document.getElementById('tableBanner');
+  //   //   // bannerImg.src = 'data:image/png;base64,' + myImage;
+  //   //   console.log(base64StringUS);
+  //   //   //document.body.style.background = `url(data:image/png;base64,${base64StringUS})`;
+  //   // };
+  //   // reader.readAsDataURL(file);
+  // };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    setIsLoading(true);
+    try {
+      const imgbbUrl = await uploadImageToImgBB(file);
+      console.error(imgbbUrl);
+      setPhotoPath(imgbbUrl);
+    } catch (error) {
+      console.error('Image upload failed:', error);
+      // Handle the error
+    } finally {
+      setIsLoading(false); // Reset loading state when upload is done
+    }
+  };
+
+  useEffect(() => {
+    fetchAllJobs().then((data) => {
+      setJobs(data);
+    });
+  }, []);
+  const uniqueJobTypes = new Set();
+
+  // Filter jobs and add unique job types to the Set
+  const uniqueJobs: Job[] = jobs.filter((job) => {
+    if (!uniqueJobTypes.has(job.Type)) {
+      uniqueJobTypes.add(job.Type);
+      return true;
+    }
+    return false;
+  });
+
+  const handleJobTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setUploadJob((currentForm) => ({
+      ...currentForm,
+      [name]: value,
+    }));
+  };
+
+  const handleCompanyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setUploadJob((currentForm) => ({
+      ...currentForm,
+      [name]: value,
+    }));
+  };
+
+  const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setUploadJob((currentForm) => ({
+      ...currentForm,
+      [name]: value,
+    }));
+  };
+
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setUploadJob((currentForm) => ({
+      ...currentForm,
+      [name]: value,
+    }));
+  };
+
   return (
     <>
       <Navbar></Navbar>
@@ -33,6 +123,7 @@ export default function AddJob() {
                     py-2
                     md:w-[700px]
                 '
+            required
             type='text'
             placeholder='Enter your job title'
           />
@@ -51,6 +142,7 @@ export default function AddJob() {
                     py-2
                     md:w-[700px]
                 '
+            required
             type='text'
             placeholder='Enter the name of your company'
           />
@@ -69,33 +161,40 @@ export default function AddJob() {
                     py-2
                     md:w-[700px]
                 '
+            required
             type='text'
             placeholder='Enter where your job located'
           />
         </div>
-        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:flex-row'>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:mr-[400px] md:flex-row'>
           <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
-            Job Description
+            Job Category
           </label>
-          <input
+          <select
+            name='resource-type'
             className='
-                    w-[300px]
-                    rounded-[15px]
-                    border
-                    border-gray-500
-                    px-4
-                    py-2
-                    md:w-[700px]
-                '
-            type='text'
-            placeholder='Enter your job description'
-          />
+                     w-[300px]
+                     rounded-[15px]
+                     border
+                     border-gray-500
+                     px-4
+                     py-2
+                     md:w-[300px]
+                 '
+          >
+            {uniqueJobs.map((job, index) => (
+              <option key={index} value={job.Type}>
+                {job.Type}
+              </option>
+            ))}
+          </select>
         </div>
-        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:flex-row'>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:mr-[400px] md:flex-row'>
           <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
-            Job Requirement
+            Work Schedule
           </label>
-          <input
+          <select
+            name='work-schedule'
             className='
                     w-[300px]
                     rounded-[15px]
@@ -103,11 +202,35 @@ export default function AddJob() {
                     border-gray-500
                     px-4
                     py-2
-                    md:w-[700px]
+                    md:w-[300px]
                 '
-            type='text'
-            placeholder='Enter job requirement'
-          />
+          >
+            <option value='full-time'>Full Time</option>
+            <option value='part-time'>Part Time</option>
+            <option value='intern'>Intern</option>
+          </select>
+        </div>
+        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:mr-[400px] md:flex-row'>
+          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
+            Experience
+          </label>
+          <select
+            name='work-schedule'
+            className='
+                    w-[300px]
+                    rounded-[15px]
+                    border
+                    border-gray-500
+                    px-4
+                    py-2
+                    md:w-[300px]
+                '
+          >
+            <option value='no-experience'>No Experience</option>
+            <option value='entry'>Entry-Level</option>
+            <option value='experienced'>Experienced</option>
+            <option value='manager'>Manager</option>
+          </select>
         </div>
         <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:mr-[400px] md:flex-row'>
           <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
@@ -124,6 +247,7 @@ export default function AddJob() {
                     md:w-[300px]
                 '
             type='text'
+            required
             placeholder='Salary Range'
           />
         </div>
@@ -145,6 +269,7 @@ export default function AddJob() {
           >
             <input
               type='file'
+              onChange={handleImageUpload}
               className='
                     block 
                     w-full 
@@ -163,24 +288,6 @@ export default function AddJob() {
                      '
             />
           </div>
-        </div>
-        <div className='mt-5 flex flex-col items-center justify-end text-xl sm:flex-col md:mr-[400px] md:flex-row'>
-          <label className='mb-3 items-center text-right text-lg md:mr-20 md:w-32'>
-            Contact Detail
-          </label>
-          <input
-            className='
-                    w-[175px]
-                    rounded-[15px]
-                    border
-                    border-gray-500
-                    px-4
-                    py-2
-                    md:w-[300px]
-                '
-            type='text'
-            placeholder='Enter your contact detail'
-          />
         </div>
         <button
           className='
@@ -201,7 +308,10 @@ export default function AddJob() {
         >
           Upload
         </button>
+        {isLoading && <p>Loading....</p>} {/* Display loading indicator */}
       </form>
+      {/* <button onClick={handleImageUpload}>Upload Image</button> */}
+      {photoPath && <Image src={photoPath} alt='' width={300} height={300} />}
     </>
   );
 }

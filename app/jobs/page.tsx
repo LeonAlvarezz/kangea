@@ -31,7 +31,7 @@ export default function Job() {
         <SearchBar></SearchBar>
         <div className='mx-auto mt-10 grid w-[90%] grid-cols-5 gap-10'>
           <div className='hidden w-full lg:block'>
-            <JobCategory></JobCategory>
+            <JobCategory jobs={jobs}></JobCategory>
           </div>
           <div className='col-span-5 h-full w-full lg:col-span-4'>
             <div className='w-full'>

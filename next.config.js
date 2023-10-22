@@ -3,6 +3,6 @@ const nextConfig = {};
 
 module.exports = {
   images: {
-    domains: ['images.khmer24.co', 'st2.depositphotos.com'],
+    domains: ['images.khmer24.co', 'st2.depositphotos.com', 'i.ibb.co'],
   },
 };

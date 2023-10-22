@@ -1,13 +1,14 @@
 type Job = {
-  id: number;
-  job_type: string;
-  position: string;
-  company: string;
-  location: string;
-  datePosted: Date;
-  salary: string;
-  image: string;
-  imageAlt: string;
+  PostingID: number;
+  DatePosted: Date;
+  Location: string;
+  ImageLink: string | null;
+  Title: string;
+  CompanyName: string;
+  ResourceType: string;
+  WorkingSchedule: string;
+  Experience: string;
+  Salary: string;
 };
 
 type Category = {

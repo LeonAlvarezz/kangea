@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const IMG_BB_API_KEY = 'YOUR_IMG_BB_API_KEY';
-
 async function uploadImageToImgBB(image) {
   const formData = new FormData();
   formData.append('image', image);

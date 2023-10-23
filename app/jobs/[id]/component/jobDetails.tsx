@@ -36,7 +36,14 @@ export default function JobDetails({ job }: params) {
             <p>{job.ResourceType}</p>
           </div>
           <p className='text-center md:text-left'>{job.WorkingSchedule}</p>
-          <p className='text-center md:text-left'>Salary: {job.Salary}</p>
+          <p className='text-center md:text-left'>
+            Salary:{' '}
+            {
+              job.Salary.includes('$')
+                ? job.Salary
+                : `$${job.Salary}` /* Check if the salary contain '$' symbol, if not add it*/
+            }
+          </p>
           <p className='text-center md:text-left'>
             Date Posted: {formattedDate}
           </p>

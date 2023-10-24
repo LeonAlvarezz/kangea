@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors'); // Import the cors package
 const app = express();
 const pool = require('./database/connection');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const route = require('./router/route'); // Update this path to your route file
 require('dotenv').config();
 

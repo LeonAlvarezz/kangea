@@ -6,7 +6,9 @@ const getPostings = async (req, res) => {
     const connection = await pool.getConnection();
 
     // Query to select all postings
-    const [allResults, fields] = await connection.query('SELECT * FROM jobPosting');
+    const [allResults, fields] = await connection.query(
+      'SELECT * FROM jobPosting'
+    );
 
     // Release the connection back to the pool
     connection.release();
@@ -19,13 +21,22 @@ const getPostings = async (req, res) => {
       const titleId = posting.TitleID;
       const resourceId = posting.ResourceID;
       // Perform a SELECT statement for additional data based on titleId
-      const [additionalResult, _] = await pool.query('SELECT * FROM Title WHERE TitleID = ?', [titleId]);
+      const [additionalResult, _] = await pool.query(
+        'SELECT * FROM Title WHERE TitleID = ?',
+        [titleId]
+      );
 
       // Perform a SELECT statement for additional data based on titleId
-      const [additionalResource, ____] = await pool.query('SELECT * FROM AdditionalResource WHERE ResourceID = ?', [resourceId]);
+      const [additionalResource, ____] = await pool.query(
+        'SELECT * FROM AdditionalResource WHERE ResourceID = ?',
+        [resourceId]
+      );
 
       // Perform another SELECT query to get CompanyName
-      const [companyResult, __] = await pool.query('SELECT CompanyName FROM Company WHERE CompanyID = ?', [additionalResult[0].CompanyID]);
+      const [companyResult, __] = await pool.query(
+        'SELECT CompanyName FROM Company WHERE CompanyID = ?',
+        [additionalResult[0].CompanyID]
+      );
 
       return {
         PostingID: posting.PostingID,
@@ -53,8 +64,6 @@ const getPostings = async (req, res) => {
   }
 };
 
-
-
 const getPostingById = async (req, res) => {
   try {
     // Get id from Param
@@ -65,7 +74,8 @@ const getPostingById = async (req, res) => {
     const con = await pool.getConnection();
 
     // Select data by joining Title, Resource, and JobPosting tables
-    const [rows] = await con.query(`
+    const [rows] = await con.query(
+      `
       SELECT
         jp.PostingID,
         jp.DatePosted,
@@ -87,7 +97,9 @@ const getPostingById = async (req, res) => {
         AdditionalResource r ON jp.ResourceID = r.ResourceID
       WHERE
         jp.PostingID = ?;
-    `, [id]);
+    `,
+      [id]
+    );
 
     con.release();
     res.json(rows[0]); // Assuming you expect a single result
@@ -96,7 +108,6 @@ const getPostingById = async (req, res) => {
     res.status(500).json({ error: 'Internal Server error' });
   }
 };
-
 
 const updatePostingById = async (req, res) => {
   const id = req.params.id;
@@ -124,7 +135,6 @@ const updatePostingById = async (req, res) => {
       [postIdResult[0].TitleID]
     );
 
-
     const { Title, Resource, DatePosted, Location, ImageLink } = req.body;
 
     // Update the Title table
@@ -140,7 +150,7 @@ const updatePostingById = async (req, res) => {
     );
 
     // I am an idiot for not realising the order
-  
+
     // console.log(companyUpdateResult)
     // console.log(titleUpdateResult)
 
@@ -152,7 +162,7 @@ const updatePostingById = async (req, res) => {
         Resource.Working_Schedule,
         Resource.Experience,
         Resource.Salary,
-        postIdResult[0].ResourceID
+        postIdResult[0].ResourceID,
       ]
     );
 
@@ -175,7 +185,7 @@ const updatePostingById = async (req, res) => {
       return res.status(404).json({ error: 'Posting not found' });
     }
 
-    console.log("Post updated");
+    console.log('Post updated');
     res.json({ message: 'Posting updated successfully' });
   } catch (error) {
     console.error(error);
@@ -189,35 +199,82 @@ const updatePostingById = async (req, res) => {
   }
 };
 
+// const addPosting = async (data) => {
+//   try {
+//     const connection = await pool.getConnection();
 
+//     console.log(data.body)
+//     // Step 1: Insert into Company Table
+//     const [companyResult] = await connection.query('INSERT INTO Company (CompanyName) VALUES (?) ON DUPLICATE KEY UPDATE CompanyName=VALUES(CompanyName)', [data.body.Title.CompanyName]);
 
-const addPosting = async (data) => {
+//     // Step 2: Insert into Title Table
+//     const [titleResult] = await connection.query('INSERT INTO Title (CompanyID, TitleName) VALUES (?, ?)', [companyResult.insertId, data.body.Title.TitleName]);
+
+//     // Step 3: Insert into Resource Table
+//     const [resourceResult] = await connection.query('INSERT INTO AdditionalResource (Type, Working_Schedule, Experience, Salary) VALUES (?, ?, ?, ?)', [data.body.Resource.Type, data.body.Resource.Working_Schedule, data.body.Resource.Experience, data.body.Resource.Salary]);
+
+//     // Step 4: Insert into JobPosting Table
+//     const [jobPostingResult] = await connection.query('INSERT INTO JobPosting (TitleID, ResourceID, DatePosted, Location, ImageLink) VALUES (?, ?, ?, ?, ?)', [titleResult.insertId, resourceResult.insertId, data.body.DatePosted, data.body.Location, data.body.ImageLink]);
+
+//     connection.release();
+
+//     return jobPostingResult.insertId;
+//   } catch (error) {
+//     throw error;
+//   }
+// }
+
+const addPosting = async (data, res) => {
   try {
     const connection = await pool.getConnection();
 
-    console.log(data.body)
     // Step 1: Insert into Company Table
-    const [companyResult] = await connection.query('INSERT INTO Company (CompanyName) VALUES (?) ON DUPLICATE KEY UPDATE CompanyName=VALUES(CompanyName)', [data.body.Title.CompanyName]);
+    const [companyResult] = await connection.query(
+      'INSERT INTO Company (CompanyName) VALUES (?) ON DUPLICATE KEY UPDATE CompanyName=VALUES(CompanyName)',
+      [data.body.CompanyName]
+    );
 
     // Step 2: Insert into Title Table
-    const [titleResult] = await connection.query('INSERT INTO Title (CompanyID, TitleName) VALUES (?, ?)', [companyResult.insertId, data.body.Title.TitleName]);
+    const [titleResult] = await connection.query(
+      'INSERT INTO Title (CompanyID, TitleName) VALUES (?, ?)',
+      [companyResult.insertId, data.body.Title]
+    );
 
     // Step 3: Insert into Resource Table
-    const [resourceResult] = await connection.query('INSERT INTO AdditionalResource (Type, Working_Schedule, Experience, Salary) VALUES (?, ?, ?, ?)', [data.body.Resource.Type, data.body.Resource.Working_Schedule, data.body.Resource.Experience, data.body.Resource.Salary]);
+    const [resourceResult] = await connection.query(
+      'INSERT INTO AdditionalResource (Type, Working_Schedule, Experience, Salary) VALUES (?, ?, ?, ?)',
+      [
+        data.body.ResourceType,
+        data.body.WorkingSchedule,
+        data.body.Experience,
+        data.body.Salary,
+      ]
+    );
 
     // Step 4: Insert into JobPosting Table
-    const [jobPostingResult] = await connection.query('INSERT INTO JobPosting (TitleID, ResourceID, DatePosted, Location, ImageLink) VALUES (?, ?, ?, ?, ?)', [titleResult.insertId, resourceResult.insertId, data.body.DatePosted, data.body.Location, data.body.ImageLink]);
+    const [jobPostingResult] = await connection.query(
+      'INSERT INTO JobPosting (TitleID, ResourceID, DatePosted, Location, ImageLink) VALUES (?, ?, ?, ?, ?)',
+      [
+        titleResult.insertId,
+        resourceResult.insertId,
+        data.body.DatePosted,
+        data.body.Location,
+        data.body.ImageLink,
+      ]
+    );
 
     connection.release();
+    console.log('Data Body: ', data.body);
 
-    return jobPostingResult.insertId;
+    return res
+      .status(200)
+      .json({ message: 'Successfully added to the database' });
   } catch (error) {
     throw error;
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server error' });
   }
-}
-
-
-
+};
 
 module.exports = {
   getPostings,

@@ -203,7 +203,7 @@ const addPosting = async (data) => {
     const [titleResult] = await connection.query('INSERT INTO Title (CompanyID, TitleName) VALUES (?, ?)', [companyResult.insertId, data.body.Title.TitleName]);
 
     // Step 3: Insert into Resource Table
-    const [resourceResult] = await connection.query('INSERT INTO AdditionalResource (Type, Working_Schedule, Experience, Salary) VALUES (?, ?, ?, ?)', [data.body.Resource.Type, data.body.Resource.Working_Schedule, data.body.Resource.Experience, data.body.Resource.Salary]);
+    const [resourceResult] = await connection.query('INSERT INTO AdditionalResource (Type, Working_Schedule, Experience, Salary, Phone) VALUES (?, ?, ?, ?,?)', [data.body.Resource.Type, data.body.Resource.Working_Schedule, data.body.Resource.Experience, data.body.Resource.Salary, data.body.Resource.Phone]);
 
     // Step 4: Insert into JobPosting Table
     const [jobPostingResult] = await connection.query('INSERT INTO JobPosting (TitleID, ResourceID, DatePosted, Location, ImageLink) VALUES (?, ?, ?, ?, ?)', [titleResult.insertId, resourceResult.insertId, data.body.DatePosted, data.body.Location, data.body.ImageLink]);

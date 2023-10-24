@@ -1,12 +1,10 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../components/navbar';
 import SearchBar from './component/searchBar';
 import JobCategory from './component/jobCategory';
 import JobItem from './component/jobItem';
 import { fetchAllJobs } from '../../helper/helper';
 // import jobs from '../../mock-data/jobs';
-import Footer from '../../components/footer';
 import type { Job } from '../../type/type';
 export default function Job() {
   const initialJobsToShow = 5;
@@ -26,7 +24,6 @@ export default function Job() {
 
   return (
     <div>
-      <Navbar></Navbar>
       <div className='my-10'>
         <SearchBar></SearchBar>
         <div className='mx-auto mt-10 grid w-[90%] grid-cols-5 gap-10'>
@@ -61,7 +58,6 @@ export default function Job() {
           </div>
         </div>
       </div>
-      <Footer></Footer>
     </div>
   );
 }

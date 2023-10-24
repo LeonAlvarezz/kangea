@@ -1,7 +1,6 @@
 'use client';
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Navbar from '../../components/navbar';
 import type { Job } from '../../type/type';
 import { fetchAllJobs, addPost } from '../../helper/helper';
 import Image from 'next/image';
@@ -12,29 +11,24 @@ import { ToastContainer, toast } from 'react-toastify';
 
 export default function AddJob() {
   const [jobs, setJobs] = useState<Job[]>([]);
-  const [uploadJob, setUploadJob] = useState<Job>({
-    PostingID: 0, // Initialize with appropriate default values
-    DatePosted: new Date(),
-    Location: '',
-    ImageLink: null,
-    Title: '', // Make sure it matches the property name in your Job type
-    CompanyName: '',
-    ResourceType: '',
-    WorkingSchedule: '',
-    Experience: '',
-    Salary: '',
-  });
   const [photoPath, setPhotoPath] = useState('');
   const [photoFile, setPhotoFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selected, setSelected] = useState('');
-  var pad = function (num) {
-    return ('00' + num).slice(-2);
-  };
+  const [title, setTitle] = useState('');
+  const [company, setCompany] = useState('');
+  const [location, setLocation] = useState('');
+  const [category, setCategory] = useState('');
+  const [schedule, setSchedule] = useState('');
+  const [experience, setExperience] = useState('');
+  const [salary, setSalary] = useState('');
+  const [photo, setPhoto] = useState('');
 
   var date = new Date();
   const formattedDate = date.toISOString();
   const handleImageUpload = async (e) => {
+    setPhoto(e.target.value);
+    console.log(e.target.value);
     const file = e.target.files[0];
     setIsLoading(true);
     try {
@@ -66,35 +60,20 @@ export default function AddJob() {
   });
 
   const handleJobTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setUploadJob((currentJob) => ({
-      ...currentJob,
-      [name]: value,
-    }));
+    setTitle(event.target.value);
   };
 
   const handleCompanyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setUploadJob((currentJob) => ({
-      ...currentJob,
-      [name]: value,
-    }));
+    setCompany(event.target.value);
   };
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setUploadJob((currentJob) => ({
-      ...currentJob,
-      [name]: value,
-    }));
+    setLocation(event.target.value);
   };
 
   const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setUploadJob((currentJob) => ({
-      ...currentJob,
-      [name]: value,
-    }));
+    setCategory(event.target.value);
+    console.log(category);
     const jobCategory = document.getElementById('job-category');
     jobCategory.style.borderColor =
       'rgb(107 114 128 / var(--tw-border-opacity))';
@@ -103,14 +82,7 @@ export default function AddJob() {
   const handleWorkScheduleChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const { name, value } = event.target;
-    console.log(name, value);
-    setUploadJob((currentJob) => ({
-      ...currentJob,
-      [name]: value,
-    }));
-    console.log(uploadJob);
-
+    setSchedule(event.target.value);
     const jobSchedule = document.getElementById('job-schedule');
     jobSchedule.style.borderColor =
       'rgb(107 114 128 / var(--tw-border-opacity))';
@@ -119,37 +91,20 @@ export default function AddJob() {
   const handleExperienceChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const { name, value } = event.target;
-    setUploadJob((currentJob) => ({
-      ...currentJob,
-      [name]: value,
-    }));
+    setExperience(event.target.value);
     const jobExperience = document.getElementById('job-experience');
     jobExperience.style.borderColor =
       'rgb(107 114 128 / var(--tw-border-opacity))';
   };
 
   const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setUploadJob((currentJob) => ({
-      ...currentJob,
-      [name]: value,
-    }));
+    setSalary(event.target.value);
   };
 
-  const handleCompanyLogoChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const { name, value } = event.target;
-    setUploadJob((currentJob) => ({
-      ...currentJob,
-      [name]: value,
-    }));
-  };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!uploadJob.resourceType) {
+    if (!category) {
       toast.warning('Please Enter Category!');
       const jobCategory = document.getElementById('job-category');
       jobCategory.style.borderColor = 'red';
@@ -157,7 +112,7 @@ export default function AddJob() {
       return;
     }
 
-    if (!uploadJob.workSchedule) {
+    if (!schedule) {
       toast.warning('Please Enter Work Schedule!');
       const jobCategory = document.getElementById('job-schedule');
       jobCategory.style.borderColor = 'red';
@@ -165,7 +120,7 @@ export default function AddJob() {
       return;
     }
 
-    if (!uploadJob.experience) {
+    if (!experience) {
       toast.warning('Please Enter Work Experience!');
       const jobCategory = document.getElementById('job-experience');
       jobCategory.style.borderColor = 'red';
@@ -181,16 +136,26 @@ export default function AddJob() {
       const newJob: Job = {
         PostingID: lastPostID,
         DatePosted: formattedDate,
-        Location: uploadJob.Location,
+        Location: location,
         ImageLink: photoPath || null,
-        Title: uploadJob.Title,
-        CompanyName: uploadJob.CompanyName,
-        ResourceType: uploadJob.ResourceType,
-        WorkingSchedule: uploadJob.WorkSchedule,
-        Experience: uploadJob.Experience,
-        Salary: uploadJob.Salary,
+        Title: title,
+        CompanyName: company,
+        ResourceType: category,
+        WorkingSchedule: schedule,
+        Experience: experience,
+        Salary: salary,
       };
       const response = await addPost(newJob);
+
+      setTitle('');
+      setCompany('');
+      setCategory('');
+      setLocation('');
+      setSchedule('');
+      setExperience('');
+      setSalary('');
+      setPhotoPath(null);
+      setPhoto('');
     } catch (error) {
       console.error('Error Posting Job:', error);
     }
@@ -198,7 +163,6 @@ export default function AddJob() {
 
   return (
     <>
-      <Navbar></Navbar>
       <ToastContainer
         position='top-right'
         autoClose={5000}
@@ -213,18 +177,19 @@ export default function AddJob() {
       />
       <div
         style={{ minHeight: 'calc(100vh - 100px)' }}
-        className=' flex items-center '
+        className=' mt-10 md:flex md:items-center '
       >
         <form
           className='
             m-auto 
             flex
             h-full
-            w-[70%] 
-            flex-col
-             items-center
-            justify-center
+            w-[90%]
+            flex-col 
+            items-center
+             justify-center
             gap-5
+            md:w-[70%]
           '
           onSubmit={handleSubmit}
         >
@@ -247,8 +212,8 @@ export default function AddJob() {
               name='Title'
               onChange={handleJobTitleChange}
               required
-              value={uploadJob.Title}
               type='text'
+              value={title}
               placeholder='Enter your job title'
             />
           </div>
@@ -269,8 +234,8 @@ export default function AddJob() {
               name='CompanyName'
               onChange={handleCompanyChange}
               required
-              value={uploadJob.CompanyName}
               type='text'
+              value={company}
               placeholder='Enter the name of your company'
             />
           </div>
@@ -291,7 +256,7 @@ export default function AddJob() {
               required
               onChange={handleLocationChange}
               name='Location'
-              value={uploadJob.Location}
+              value={location}
               type='text'
               placeholder='Enter where your job located'
             />
@@ -304,11 +269,10 @@ export default function AddJob() {
               name='ResourceType'
               onChange={handleCategoryChange}
               id='job-category'
-              value={uploadJob.ResourceType}
-              defaultValue={'DEFAULT'}
+              value={category}
               className='col-span-2 w-full rounded-[15px] border border-gray-500 px-4 py-2'
             >
-              <option value='DEFAULT' disabled>
+              <option value='' disabled>
                 Select a Category
               </option>
               {uniqueJobs.map((job, index) => (
@@ -326,12 +290,11 @@ export default function AddJob() {
             <select
               name='WorkSchedule'
               id='job-schedule'
-              defaultValue={'DEFAULT'}
-              value={uploadJob.WorkSchedule}
+              value={schedule}
               onChange={handleWorkScheduleChange}
               className='col-span-2 w-full rounded-[15px] border border-gray-500 px-4 py-2'
             >
-              <option value='DEFAULT' disabled>
+              <option value='' disabled>
                 Select Work Schedule
               </option>
               <option value='Full-time'>Full Time</option>
@@ -346,12 +309,11 @@ export default function AddJob() {
             <select
               name='Experience'
               id='job-experience'
-              defaultValue={'DEFAULT'}
-              value={uploadJob.Experience}
+              value={experience}
               onChange={handleExperienceChange}
               className='col-span-2 w-full rounded-[15px] border border-gray-500 px-4 py-2'
             >
-              <option value='DEFAULT' disabled>
+              <option value='' disabled>
                 Select Experience
               </option>
               <option value='No-Experience'>No Experience</option>
@@ -369,9 +331,9 @@ export default function AddJob() {
               className='col-span-2 w-full rounded-[15px] border border-gray-500 px-4 py-2'
               type='text'
               required
+              value={salary}
               onChange={handleSalaryChange}
               name='Salary'
-              value={uploadJob.Salary}
               placeholder='Salary Range'
             />
           </div>
@@ -384,6 +346,7 @@ export default function AddJob() {
                 type='file'
                 onChange={handleImageUpload}
                 name='CompanyLogo'
+                value={photo}
                 className='
                     block 
                     w-full 

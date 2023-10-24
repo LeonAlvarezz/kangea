@@ -1,11 +1,15 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import NavBarItem from './navbarItem';
 import Link from 'next/link';
-
+import Hamburger from './hamburger';
 export default function Navbar() {
   return (
     <>
+      <div className='md:hidden'>
+        <Hamburger />
+      </div>
       <div className='bg-primary-color w-full'>
         <div className='m-auto flex h-[100px] w-[90%] items-center justify-between text-white'>
           <div className='w-[141px]'>
@@ -18,7 +22,7 @@ export default function Navbar() {
               />
             </a>
           </div>
-          <div className='hidden items-center justify-center gap-16 md:flex'>
+          <div className='items-center justify-center gap-16 md:flex'>
             <NavBarItem></NavBarItem>
           </div>
         </div>

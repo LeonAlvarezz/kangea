@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import LastestJobItem from '@/components/lastestJobItem';
-import Navbar from '../../../components/navbar';
 import ContactDetail from './component/contactDetails';
 import SimilarJob from './component/similarJob';
 import JobDetails from './component/jobDetails';
@@ -32,7 +31,6 @@ async function Job({ params }): React.FC<JobProps> {
   // }, []);
   return (
     <div>
-      <Navbar></Navbar>
       <div
         key={job.PostingID}
         className='flex items-center justify-center'

@@ -1,7 +1,5 @@
 'use client';
 import React from 'react';
-import Navbar from '../../components/navbar';
-import Footer from '../../components/footer';
 import LimkokwingImage from '@/public/img/Limkokwing.png';
 
 import {
@@ -114,7 +112,6 @@ export default function ContactUs() {
 
   return (
     <>
-      <Navbar />
       <section>
         <Stack
           direction='column'
@@ -315,10 +312,6 @@ export default function ContactUs() {
           {matches ? submitButtonTrue : submitButtonFlase}
         </Stack>
       </section>
-
-      <footer style={{ marginTop: 'auto' }}>
-        <Footer />
-      </footer>
     </>
   );
 }

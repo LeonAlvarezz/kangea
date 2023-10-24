@@ -1,7 +1,5 @@
 'use client';
 import React from 'react';
-import Navbar from '../../components/navbar';
-import Footer from '../../components/footer';
 import LimkokwingImage from '../..//public/img/Limkokwing.png';
 import { Typography, useMediaQuery, Stack } from '@mui/material';
 import { Image } from 'react-bootstrap';
@@ -37,7 +35,6 @@ export default function AboutUs() {
 
   return (
     <>
-      <Navbar />
       <section>
         <Stack
           direction={matches ? 'row' : 'column'}
@@ -97,9 +94,6 @@ export default function AboutUs() {
           </div>
         </Stack>
       </section>
-      <footer style={{ marginTop: 'auto' }}>
-        <Footer />
-      </footer>
     </>
   );
 }

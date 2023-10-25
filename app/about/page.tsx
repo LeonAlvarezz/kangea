@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import LimkokwingImage from '../..//public/img/Limkokwing.png';
+import LimkokwingImage from '../../public/img/Limkokwing.png';
 import { Typography, useMediaQuery, Stack } from '@mui/material';
 import { Image } from 'react-bootstrap';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';

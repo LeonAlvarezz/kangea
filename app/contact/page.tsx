@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import LimkokwingImage from '@/public/img/Limkokwing.png';
 
 import {
   Typography,

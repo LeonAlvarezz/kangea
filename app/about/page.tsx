@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import LimkokwingImage from '../../public/img/Limkokwing.png';
 import { Typography, useMediaQuery, Stack } from '@mui/material';
 import { Image } from 'react-bootstrap';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
@@ -90,7 +89,7 @@ export default function AboutUs() {
 
           {/* Right Grid Item */}
           <div style={gridItemStyle}>
-            <Image alt='Limkokwing' src={LimkokwingImage.src} width='100%' />
+            <Image alt='Limkokwing' src='/img/limkokwing.png' width='100%' />
           </div>
         </Stack>
       </section>

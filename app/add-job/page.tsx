@@ -51,7 +51,7 @@ export default function AddJob() {
   const uniqueJobTypes = new Set();
 
   // Filter jobs and add unique job types to the Set
-  const uniqueJobs: Job[] = jobs.filter((job) => {
+  const uniqueJobs = jobs.filter((job) => {
     if (!uniqueJobTypes.has(job.Type)) {
       uniqueJobTypes.add(job.Type);
       return true;

@@ -113,7 +113,7 @@ export default function AddJob() {
     }
 
     if (!schedule) {
-      toast.warning('Please Enter Work Schedule!');
+      toast.warning('Please Enter Work Schedule');
       const jobCategory = document.getElementById('job-schedule');
       jobCategory.style.borderColor = 'red';
       jobCategory.style.borderStyle = 'solid';
